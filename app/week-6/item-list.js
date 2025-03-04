@@ -12,10 +12,20 @@ export function ItemList(){
             return a.name.localeCompare(b.name);
         } else if (sortBy === "category"){
             return a.category.localeCompare(b.category);
-        } else if (sortBy === "group"){
-            
-            return;
         }
+        return;
+    }
+
+    const groupAlphabetically = (itemsList) => {
+        itemsList.reduce = ((acc, item) => {
+            if (!acc[item.category]){
+                acc.push(item.category)
+            }
+            acc[item.category].push(item)
+            console.lo(acc)
+        },[])
+
+        return itemsList;
     }
 
     return (
@@ -36,7 +46,7 @@ export function ItemList(){
             </button>
             <button 
                 className={`m-2 rounded-2xl p-7 ${sortBy === "group" ? "bg-blue-500" : "bg-gray-500"}`}
-                onClick={(event) => setSortBy("group")}
+                onClick={(event) => groupAlphabetically()}
                 >
                 Group By Category
             </button>
